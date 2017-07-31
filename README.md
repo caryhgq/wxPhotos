@@ -35,7 +35,7 @@ router.post('/getSignature',(ctx, next) => {
 });
 ```
 
-<img style="width:12em;margin:0;" src="http://img.fairy-domain.com/2017/app-qrcode.jpg" alt="多彩画册">
+<img style="width:240px;" src="http://img.fairy-domain.com/2017/wxPhotos.jpg" alt="多彩画册">
 
 #### 主要功能
 
