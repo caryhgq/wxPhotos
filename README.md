@@ -35,8 +35,6 @@ router.post('/getSignature',(ctx, next) => {
 });
 ```
 
-![多彩画册](http://img.fairy-domain.com/2017/wxPhotos.jpg)
-
 #### 主要功能
 
 - 1.照片上传
