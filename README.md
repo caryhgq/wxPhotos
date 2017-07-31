@@ -5,7 +5,8 @@
 小程序学习之作，代码比较糙！后台使用 NodeJs + MongoDB + Nginx，源码在文件夹server内！
 
 
-后台部分
+后台服务
+
 图片的上传使用了 又拍云的服务，图片存储在云端
 
 ```js
@@ -34,6 +35,7 @@ router.post('/getSignature',(ctx, next) => {
 });
 ```
 
+<img style="width:12em;margin:0;" src="http://img.fairy-domain.com/2017/app-qrcode.jpg" alt="多彩画册">
 
 #### 主要功能
 
