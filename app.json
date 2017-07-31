@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/popular/popular",
+    "pages/inform/inform",
+    "pages/me/me",
+    "pages/guest/guest",
+    "pages/details/details",
+    "pages/gallery/gallery",
+    "pages/favorite/favorite",
+    "pages/feedback/feedback",
+    "pages/attention/attention",
+    "pages/fans/fans",
+    "pages/publish/publish",
+    "pages/message/message"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#f0eff5",
+    "navigationBarBackgroundColor": "#ffa000",
+    "navigationBarTitleText": "多彩画册",
+    "navigationBarTextStyle": "white"
+  },
+  "debug": false,
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#ffa000",
+    "list": [
+      {
+        "iconPath": "./images/photo.png",
+        "selectedIconPath": "./images/photo-active.png",
+        "pagePath": "pages/home/home",
+        "text": "画册"
+      },
+      {
+        "iconPath": "./images/choice.png",
+        "selectedIconPath": "./images/choice-active.png",
+        "pagePath": "pages/popular/popular",
+        "text": "热门"
+      },
+      {
+        "iconPath": "./images/message.png",
+        "selectedIconPath": "./images/message-active.png",
+        "pagePath": "pages/inform/inform",
+        "text": "消息"
+      },
+      {
+        "iconPath": "./images/me.png",
+        "selectedIconPath": "./images/me-active.png",
+        "pagePath": "pages/me/me",
+        "text": "我的"
+      }
+    ]
+  }
+}

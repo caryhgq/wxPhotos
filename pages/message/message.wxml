@@ -1,0 +1,22 @@
+<view class="page">
+  <scroll-view class="chat-box" scroll-y="true" bindscrolltoupper="upper" upper-threshold="100" scroll-into-view="{{toView}}">
+    <view wx:for="{{messageList}}" wx:key="{{index}}" class="item" id="{{'v'+index}}">
+      <view class="item-datetime"><text>{{item.createTime}}</text></view>
+      <view class="{{item.passive?'message-item':'message-item self'}}">
+        <image mode="widthFix" src="{{item.sender.avatarUrl}}"></image>
+        <view class="message-desc">{{item.message}}</view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="message-input">
+    <view class="reply-btn" bindtap="openInput">回复消息</view>
+  </view>
+  <view class="{{isInput ? 'reply-layer active' :'reply-layer'}}">
+    <view class="close-layer" catchtap="closeInput"></view>
+    <view class="reply-input-box">
+      <view class="textarea-input">
+        <textarea focus="{{isInput}}" bindconfirm="replyInput" value="{{replyText}}" placeholder="留言内容（至少两个字哦）" />
+      </view>
+    </view>
+  </view>
+</view>

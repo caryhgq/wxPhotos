@@ -1,0 +1,53 @@
+<!--pages/me/me.wxml-->
+<view class="page">
+  <view class="user-base">
+    <view class="user-info">
+      <image class="userinfo-avatar" mode="aspectFill" src="{{userInfo.avatarUrl}}"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </view>
+    <view class="user-links">
+      <view class="link-item">
+        <navigator url="../gallery/gallery">
+        <text class="number">{{shareCount}}</text>
+        <text>分享</text>
+        </navigator>
+      </view>
+      <view class="link-item">
+        <navigator url="../favorite/favorite">
+        <text class="number">{{collectCount}}</text>
+        <text>收藏</text>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <view class="user-nav">
+    <view class="nav-group">
+    <view class="nav-item">
+        <navigator url="../gallery/gallery">
+          <image class="nav-icon" mode="widthFix" src="../../images/gallery.png"></image>
+          <text>相册</text>
+        </navigator>
+      </view>
+      <view class="nav-item">
+        <navigator url="../attention/attention">
+          <image class="nav-icon" mode="widthFix" src="../../images/attention.png"></image>
+          <text>关注</text>
+        </navigator>
+      </view>
+      <view class="nav-item">
+        <navigator url="../fans/fans">
+          <image class="nav-icon" mode="widthFix" src="../../images/fans.png"></image>
+          <text>粉丝</text>
+        </navigator>
+      </view>
+    </view>
+    <view class="nav-group">
+      <view class="nav-item">
+        <navigator url="../feedback/feedback">
+          <image class="nav-icon" mode="widthFix" src="../../images/feedback.png"></image>
+          <text>反馈</text>
+        </navigator>
+      </view>
+    </view>
+  </view>
+</view>

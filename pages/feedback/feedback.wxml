@@ -1,0 +1,31 @@
+<view class="page">
+  <view class="feedback-box">
+    <form>
+      <view class="form-group">
+        <radio-group class="radio-group" bindchange="radioChange">
+          <label class="{{item.checked ? 'radio active' :'radio' }} " wx:for="{{items}}" wx:key="{{index}}">
+            <radio color="#ffa000" value="{{item.name}}" checked="{{item.checked}}" />
+            <text>{{item.value}}</text>
+          </label>
+        </radio-group>
+      </view>
+      <view class="form-group">
+        <textarea bindinput="feedbackMessage" class="feedback-input" placeholder="您的意见或建议（140个字）" />
+      </view>
+      <view class="form-group">
+        <view class="group-title">截图描述(选填)</view>
+        <view class="upload-group">
+          <block wx:if="{{formData.screenshot.length > 0}}">
+            <view wx:for="{{formData.screenshot}}" wx:key="index" style="{{'background-image: url('+item+');border:0;'}}" class="screenshot-preview">
+              <view class="del-btn" catchtap="remove" data-id="{{index}}"></view>
+            </view>
+          </block>
+          <view wx:if="{{formData.screenshot.length <4}}" class="plus screenshot-preview" bindtap="selectScreenshot"></view>
+        </view>
+      </view>
+      <view class="form-group">
+        <view class="submit-btn" bindtap="submitForm">提交反馈</view>
+      </view>
+    </form>
+  </view>
+</view>

@@ -1,0 +1,78 @@
+/* pages/me/me.wxss */
+.user-base{
+  padding: 1px 0;
+  background-color: #ffa000;
+  color: #fff;
+}
+.user-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.5em 0 1em 0;
+}
+.userinfo-avatar{
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 80rpx;
+  border:2px solid rgba(255,255,255,0.6);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.userinfo-nickname{
+  margin: 0.4em 0 0 0;
+}
+.user-links{
+  display: flex;
+  border-top:1px solid rgba(255,255,255,0.1);
+}
+.link-item{
+  width: 50%;
+  font-size: 80%;
+  box-sizing: border-box;
+  line-height: 46rpx;
+}
+.link-item navigator{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.4em 0;
+}
+.link-item:last-child{
+  border-left: 1px solid rgba(255,255,255,0.1);
+}
+.number{
+  font-size: 48rpx;
+}
+.nav-group{
+  margin: 42rpx 0;
+  border-top:1px solid #eee;
+  border-bottom:1px solid #eee;
+}
+.nav-item{
+  position: relative;
+}
+.nav-item::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 1em;
+  height: 1px;
+  background-color: #eee;
+  transform: translateY(50%);
+}
+.nav-item:last-child::after{
+  background-color:rgba(255,255,255,0);
+}
+
+.nav-item navigator{
+  padding:22rpx 1em;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+.nav-icon{
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 20rpx;
+}

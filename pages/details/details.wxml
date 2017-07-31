@@ -1,0 +1,69 @@
+<view class="page">
+  <scroll-view wx:if="{{isLoad}}" scroll-y="true" scroll-into-view="{{viewTo}}" scroll-with-animation="true">
+    <view class="details-header">
+      <view class="details-title">{{details.title}}</view>
+      <view class="details-status">
+        <view class="status-info">
+          <view class="author-info" bindtap="userInfo" data-uid="{{details.uid}}">
+            <image mode="widthFix" src="{{details.avatar}}"></image>
+              <text>{{details.nickName}}</text>
+          </view>
+          <view class="create-time">{{details.createTime}}</view>
+        </view>
+        <view wx:if="{{!details.isSelf}}" class="{{details.isFollow ? 'follow-btn followed':'follow-btn'}}" catchtap="followTap">{{details.isFollow ? '已关注':'关注'}}</view>
+      </view>
+    </view>
+    <view class="details-body">
+      <text>{{details.desc}}</text>
+      <image wx:for="{{details.photos}}" wx:key="index" mode="widthFix" src="{{item}}" data-imgList="{{details.photos}}" data-imgUrl="{{item}}" bindtap="previewImage"></image>
+    </view>
+    <view wx:if="{{details.favorer.length > 0}}" class="like-list">
+      <text>点赞：</text>
+      <view class="favorer-list">
+        <view wx:for="{{details.favorer}}" wx:for-item="faItem" wx:for-index="faIdx" wx:key="{{faIdx}}" class="favorer">
+          <image data-uid="{{faItem._id}}" bindtap="userInfo" mode="widthFix" src="{{faItem.userAvatar}}"></image>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{details.comments.length > 0}}" class="comment-box">
+      <view class="comment-title">评论：</view>
+      <view class="comment-list">
+        <view wx:for="{{details.comments}}" wx:for-item="comment" wx:for-index="cmmIdx" wx:key="{{cmmIdx}}" class="comment-item">
+          <view class="comment-header">
+            <view class="header-left">
+              <image mode="widthFix" src="{{comment.avatarUrl}}"></image>
+              <text class="nickname">{{comment.nickName}}</text>
+              <text class="small-time">{{comment.createTime}}</text>
+            </view>
+            <view class="header-right">{{cmmIdx+1}}楼</view>
+          </view>
+          <view class="comment-body" data-commentid="{{comment._id}}" data-uid="{{comment.uid}}" data-nickname="{{comment.nickName}}" catchtap="replyItem">{{comment.comment}}</view>
+          <view class="comment-reply">
+            <view wx:if="{{comment.replys.length>0}}" class="reply-list">
+              <view wx:for="{{comment.replys}}" wx:for-item="reply" wx:for-index="replyIdx" wx:key="{{replyIdx}}" class="reply-item">
+                <text>{{reply.nickName}}：</text>
+                <text>{{reply.message}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="empty-box" id="lastOne"></view>
+  </scroll-view>
+  <view class="details-toolbar">
+    <view class="comm-btn" catchtap="openInput">发表评论</view>
+    <view class="btn-group">
+      <view class="{{details.isLike ? 'like-btn active':'like-btn'}}" catchtap="likeTap"></view>
+      <view class="{{details.isFavor ? 'favor-btn active' : 'favor-btn'}}" catchtap="favorTap"></view>
+    </view>
+  </view>
+  <view class="{{isInput ? 'reply-layer active' :'reply-layer'}}">
+    <view class="close-layer" catchtap="closeInput"></view>
+    <view class="reply-input-box">
+      <view class="textarea-input">
+        <textarea focus="{{isInput}}" bindconfirm="replyInput" value="{{replyText}}" placeholder="{{replyHint}}"/>
+      </view>
+    </view>
+  </view>
+</view>

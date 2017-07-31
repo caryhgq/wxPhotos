@@ -1,0 +1,26 @@
+<view class="page">
+  <view wx:if="{{noticer.length > 0}}" class="attention-list">
+    <view wx:for="{{noticer}}" wx:key="{{item._id}}}" class="attention-item">
+      <navigator url="../guest/guest?id={{item._id}}">
+        <view class="user-avatar">
+          <image mode="widthFix" src="{{item.avatarUrl}}"></image>
+        </view>
+        <view class="user-desc">
+          <view class="user-nickname">{{item.nickName}}</view>
+          <view class="user-stat">
+            <view>
+              <text>相册：</text>
+              <text>{{item.photoCount}}</text>
+            </view>
+            <view>
+              <text>粉丝：</text>
+              <text>{{item.fansCount}}</text>
+            </view>
+          </view>
+        </view>
+      </navigator>
+      <view class="opts" data-id="{{item._id}}" data-index="{{index}}" catchtap="removeTap">{{item.isFollow ? '取消关注':'关注'}}</view>
+    </view>
+  </view>
+  <view wx:else class="empty-text">您还没有关注任何人！</view>
+</view>

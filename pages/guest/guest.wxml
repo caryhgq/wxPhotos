@@ -1,0 +1,55 @@
+<view class="page">
+  <view class="user-base">
+    <view class="user-info">
+      <image class="userinfo-avatar" mode="aspectFill" src="{{userInfo.avatarUrl}}"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </view>
+    <view class="user-links">
+      <view class="link-item" bindtap="followYou" data-uid="{{userInfo.uid}}">
+        <text>{{isFollow ? '已关注' :'关注'}}</text>
+      </view>
+      <view class="link-item">
+        <navigator url="../message/message?id={{userInfo.uid}}">
+          <text>私信</text>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <scroll-view scroll-y="true" class="photoList">
+    <view wx:if="{{isLoad}}">
+      <view wx:if="{{galleryData.length > 0}}" class="gallery-list">
+        <view wx:for="{{galleryData}}" wx:for-index="idx" wx:for-item="groupItem" wx:key="groupItem.id" class="gallery-item">
+          <navigator url="../details/details?id={{groupItem._id}}">
+            <view class="item-title">{{groupItem.title}}</view>
+            <view wx:if="{{groupItem.photos.length > 0}}" class="item-summy">
+              <view wx:for="{{groupItem.photos}}" wx:key="{{index}}" class="thumb">
+                <image mode="aspectFill" src="{{item}}"></image>
+              </view>
+            </view>
+            <view class="item-status">
+              <view class="author-info">
+                <image mode="widthFix" src="{{groupItem.avatarUrl}}"></image>
+                <text>{{groupItem.nickName}}</text>
+              </view>
+              <view class="stat-group">
+                <view class="create-time">
+                  <image class="stat-icon" mode="widthFix" src="../../images/clock.png"></image>
+                  <text class="small-font">{{groupItem.createTime}}</text>
+                </view>
+                <view class="views-count">
+                  <image class="stat-icon" mode="widthFix" src="../../images/eye.png"></image>
+                  <text>{{groupItem.views || 0}}</text>
+                </view>
+                <view class="liking-count">
+                  <image class="stat-icon" mode="widthFix" src="../../images/like.png"></image>
+                  <text>{{groupItem.favorer.length || 0}}</text>
+                </view>
+              </view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+      <view wx:else class="empty-text">Ta还没有分享任何画册！</view>
+    </view>
+  </scroll-view>
+</view>

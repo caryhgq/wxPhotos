@@ -1,0 +1,24 @@
+<view class="page">
+  <view wx:if="{{fans.length > 0}}" class="attention-list">
+    <view wx:for="{{fans}}" wx:key="{{item._id}}" class="attention-item">
+      <view class="user-avatar">
+        <image mode="widthFix" src="{{item.avatarUrl}}"></image>
+      </view>
+      <view class="user-desc">
+        <view class="user-nickname">{{item.nickName}}</view>
+        <view class="user-stat">
+          <view>
+           <text>相册：</text>
+            <text>{{item.photoCount}}</text>
+          </view>
+          <view>
+            <text>粉丝：</text>
+            <text>{{item.fansCount}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="opts" data-id="{{item._id}}" data-index="{{index}}" catchtap="removeTap">{{item.isFollow?'取消关注':'关注'}}</view>
+    </view>
+  </view>
+  <view wx:else class="empty-text">您还没有粉丝！</view>
+</view>

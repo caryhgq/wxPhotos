@@ -1,0 +1,139 @@
+.feedback-box {
+  padding: 1em 0.8em;
+  font-size: 95%;
+}
+
+.form-group {
+  margin: 1em 0;
+}
+
+.form-group .radio {
+  margin: 0 0.5em;
+}
+
+.form-group .radio radio {
+  display: none;
+}
+
+.form-group .radio text {
+  position: relative;
+  padding-left: 45rpx;
+}
+
+.form-group .radio text::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 34rpx;
+  height: 34rpx;
+  border-radius: 18rpx;
+  margin: -16rpx 0 0 0;
+  border: 1px solid #ffa000;
+  box-sizing: border-box;
+}
+
+.form-group .radio.active text::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 34rpx;
+  height: 34rpx;
+  border-radius: 18rpx;
+  margin: -16rpx 0 0 0;
+  border: 1px solid #ffa000;
+  box-sizing: border-box;
+  background-color: #ffa000;
+  transform: scale(0.5);
+}
+
+.feedback-input {
+  width: 100%;
+  min-height: 5em;
+  padding: 0.5em;
+  background-color: #fff;
+  border-radius: 0.2em;
+  box-sizing: border-box;
+}
+
+.group-title {
+  margin: 0 0 1em 0;
+}
+
+.screenshot-preview {
+  position: relative;
+  width: 3.6em;
+  height: 3.6em;
+  border: 1px solid #ddd;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.del-btn {
+  position: absolute;
+  top: -0.5em;
+  right: -0.5em;
+  width: 1em;
+  height: 1em;
+  border-radius: 100%;
+  background-color: #ffa000;
+  opacity: 0.8;
+}
+
+.del-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  width: 70%;
+  height: 1px;
+  background-color: #fff;
+  transform: translateY(-50%);
+}
+
+.upload-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.upload-group .screenshot-preview {
+  margin: 0 1em 0 0;
+}
+
+.plus {
+  position: relative;
+}
+
+.plus::before {
+  content: '';
+  position: absolute;
+  left: 25%;
+  top: 50%;
+  width: 50%;
+  height: 1px;
+  background-color: #ddd;
+  transform: translateY(-50%);
+}
+
+.plus::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  width: 1px;
+  height: 50%;
+  background-color: #ddd;
+  transform: translateX(-50%);
+}
+
+.submit-btn{
+  width: 60%;
+  border-radius: 0.3em;
+  line-height: 2.4em;
+  text-align: center;
+  margin: 3em auto;
+  background-color: #ffa000;
+  color: #fff;
+}

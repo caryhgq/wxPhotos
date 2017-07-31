@@ -1,0 +1,94 @@
+.publish-box {
+  padding: 1px 0;
+  font-size: 95%;
+}
+.form-group {
+  padding: 20rpx 1em;
+  background-color: #fff;
+  margin: 42rpx 0;
+}
+input{
+  height: 1.6rem;
+}
+textarea {
+  min-height: 6em;
+}
+.form-photo-group {
+  padding: 40rpx 1em 20rpx 1em;
+  background-color: #fff;
+  margin: 42rpx 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.photo-preview {
+  position: relative;
+  width: 125rpx;
+  height: 125rpx;
+  border: 1px dashed #ccc;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 20rpx 24rpx 20rpx;
+}
+.photo-preview.plus::before{
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  width: 50%;
+  height: 0;
+  border-bottom: 1px solid #ccc;
+  transform: translateY(-50%);
+}
+.photo-preview.plus::after{
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  width: 0;
+  height: 50%;
+  border-right: 1px solid #ccc;
+  transform: translateX(-50%);
+}
+
+.del-btn {
+  position: absolute;
+  top: -0.5em;
+  right: -0.5em;
+  width: 34rpx;
+  height: 34rpx;
+  border-radius: 17rpx;
+  background-color: #ffa000;
+  opacity: 0.8;
+}
+
+.del-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  width: 70%;
+  height: 1px;
+  background-color: #fff;
+  transform: translateY(-50%);
+}
+
+.submit-btn{
+  position: relative;
+  width: 60%;
+  border-radius: 0.3em;
+  line-height: 2.4em;
+  text-align: center;
+  margin: 3em auto;
+  background-color: #ffa000;
+  color: #fff;
+}
+.submit-btn button{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+}

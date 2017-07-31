@@ -1,0 +1,19 @@
+<view class="page">
+  <view wx:if="{{listData.length > 0}}" class="inform-list">
+    <view wx:for="{{listData}}" wx:key="{{item.guestInfo.uid}}" class="inform-item">
+      <navigator url="../message/message?id={{item.guestInfo.uid}}">
+        <view class="avatar-part"><image mode="widthFix" src="{{item.guestInfo.avatarUrl}}"></image></view>
+        <view class="message-part">
+          <view class="replier-info">
+            <view class="replier-type">
+              <text class="replier-nickname">{{item.guestInfo.nickName}}</text>
+            </view>
+            <view class="reply-time">{{item.createTime}}</view>
+          </view>
+          <view class="reply-from">{{item.lastMessage}}</view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+  <view wx:else class="empty-text">您还没有任何消息！</view>
+</view>

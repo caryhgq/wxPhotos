@@ -1,0 +1,22 @@
+.publish-link {
+  position: fixed;
+  bottom: 48rpx;
+  right: 36rpx;
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 100%;
+  background-color: #ffa000;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.publish-link  navigator{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+}
+.publish-link  navigator image{
+  width: 1.6em;
+  height: 1.6em;
+}

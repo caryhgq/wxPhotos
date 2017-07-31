@@ -1,0 +1,46 @@
+<view class="page">
+  <view wx:if="{{isLoad}}">
+    <view wx:if="{{galleryData.length > 0}}" class="gallery-list me">
+      <view wx:for="{{galleryData}}" wx:for-index="idx" wx:for-item="groupItem" wx:key="groupItem._id" class="{{groupItem.secret ? 'gallery-item private' : 'gallery-item'}}">
+        <navigator url="../details/details?id={{groupItem._id}}">
+          <view class="item-title">{{groupItem.title}}</view>
+          <view wx:if="{{groupItem.photos.length > 0}}" class="{{'item-summy s' + groupItem.photos.length}}">
+            <view wx:for="{{groupItem.photos}}" wx:key="{{index}}" class="thumb">
+              <image mode="aspectFill" src="{{item}}"></image>
+            </view>
+          </view>
+          <view class="item-status">
+            <view class="author-info">
+              <image mode="widthFix" src="{{groupItem.avatarUrl}}"></image>
+              <text>{{groupItem.nickName}}</text>
+            </view>
+            <view class="stat-group">
+              <view class="create-time">
+                <image class="stat-icon" mode="widthFix" src="../../images/clock.png"></image>
+                <text class="small-font">{{groupItem.createTime}}</text>
+              </view>
+              <view class="views-count">
+                <image class="stat-icon" mode="widthFix" src="../../images/eye.png"></image>
+                <text>{{groupItem.views || 0}}</text>
+              </view>
+              <view class="liking-count">
+                <image class="stat-icon" mode="widthFix" src="../../images/like.png"></image>
+                <text>{{groupItem.favorer.length || 0}}</text>
+              </view>
+            </view>
+          </view>
+        </navigator>
+        <view class="opts-btn" catchtap="showOptsMenu" data-private="{{groupItem.secret}}" data-id="{{idx}}">
+          <image mode="widthFix" src="../../images/menu.png"></image>
+        </view>
+      </view>
+      <view class="loading-hint" wx:if="{{isLoading}}">{{tips}}</view>
+    </view>
+    <view wx:else class="empty-text">您还没有图册，赶紧添加吧！</view>
+  </view>
+  <view class="publish-link">
+    <navigator url="../publish/publish">
+      <image mode="widthFix" src="../../images/publish.png"></image>
+    </navigator>
+  </view>
+</view>

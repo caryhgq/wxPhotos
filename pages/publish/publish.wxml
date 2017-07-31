@@ -1,0 +1,26 @@
+<view class="page">
+  <view class="publish-box">
+    <form bindsubmit="formSubmit">
+      <view class="form-group">
+        <input placeholder="标题（0-25个字）" name="title" maxlength="25" bindinput="titleInput" value="{{formData.title}}"/>
+      </view>
+      <view class="form-group">
+        <textarea maxlength="300" auto-height name="desc" value="{{formData.desc}}" bindinput="descInput" placeholder="内容(10-300个字)..." />
+      </view>
+      <view class="form-photo-group">
+        <block wx:if="{{formData.photos.length > 0}}">
+          <view wx:for="{{formData.photos}}" wx:key="index" style="{{'background-image: url('+item+');border:0;'}}" class="photo-preview">
+            <view class="del-btn" catchtap="remove" data-id="{{index}}"></view>
+          </view>
+        </block>
+        <view wx:if="{{formData.photos.length <9}}" class="plus photo-preview" bindtap="selectPhoto"></view>
+      </view>
+      <view class="form-submit-group">
+        <view class="submit-btn" hover-class="btnHover">
+          <button form-type="submit"></button>
+          <text>立即创建</text>
+        </view>
+      </view>
+    </form>
+  </view>
+</view>

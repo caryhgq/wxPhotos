@@ -1,0 +1,103 @@
+.page{
+  position: relative;
+}
+.chat-box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 112rpx;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+.message-input {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 112rpx;
+  padding: 0 0.8em;
+  background-color: rgba(250, 250, 250, 0.92);
+  border-top: 1px solid #eee;
+  box-sizing: border-box;
+  font-size: 95%;
+  color: #999;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+.message-item{
+  display: flex;
+  align-items: center;
+  padding: 0.5em 3.5em 0.5em 0.8em;
+}
+.message-item.self{
+  flex-direction: row-reverse;
+  padding: 0 0.8em 0.5em 3.5em;
+}
+.message-item image{
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 100%;
+  flex-shrink: 0;
+}
+.message-desc{
+  position: relative;
+  background-color: #fff;
+  margin-left: 0.6em;
+  border-radius: 0.2em;
+  padding: 0.4em 0.5em;
+  line-height: 1.4em;
+  word-break : break-all;
+  font-size: 90%;
+}
+.message-desc::before{
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 1px;
+  width: 0.6em;
+  height: 0.6em;
+  margin: -0.3em;
+  background-color: #fff;
+  transform: rotate(45deg);
+}
+.message-item.self .message-desc{
+  margin-right: 0.6em;
+  margin-left: 0;
+  background-color: #ffa000;
+  color: #fff;
+}
+
+.message-item.self .message-desc::before{
+  left: auto;
+  right: 1px;
+  background-color: #ffa000;
+}
+
+.reply-btn{
+  width: 90%;
+  line-height: 2.6em;
+  margin: 0 auto;
+  border-radius: 0.2em;
+  background-color: #ffa000;
+  text-align: center;
+  color: #fff;
+}
+
+.item-datetime{
+  font-size: 76%;
+  text-align: center;
+}
+.item{
+  padding: 0.5em 0 0 0;
+  animation: fadeInUp 0.3;
+}
+.item-datetime text{
+  display: inline-block;
+  padding: 6rpx 10rpx;
+  border-radius: 8rpx;
+  background-color: rgba(120,120,120,0.15);
+  color: #fff;
+}
