@@ -45,5 +45,7 @@ router.post('/getSignature',(ctx, next) => {
 - 6.发私信 (简单的留言功能)
 - 7.查看粉丝，查看关注
 
+### Demo
 
+![多彩画册](./wxPhotos.jpg)
 
