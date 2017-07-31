@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  .error
+    if env == 'development'
+      h1=error
+      h2=status
+      pre
+        code= stack
