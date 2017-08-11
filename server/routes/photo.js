@@ -14,7 +14,9 @@ const users = db.get('users');
 moment.locale('zh-cn');
 
 router.get('/',(ctx, next) => {
-  ctx.body = 'api接口'
+  ctx.body = Render('index',{
+    title : 'api接口！';
+  });
 });
 
 //发布和修改
@@ -66,11 +68,14 @@ router.get('/photo/api/gallery/modify/:id', async(ctx, next) => {
 
 //获取相册列表
 router.get('/photo/api/gallery/page/:num', async(ctx, next) => {
-  let page = (Number(ctx.params.num) || 0) * 5;
-  let listData = await gallery.find({secret: false}, {sort: {createTime: -1},limit: 5,skip: page}, {fields: {openid: 0,desc: 0,secret: 0}});
+  let page = (Number(ctx.params.num) || 0) * 8;
+  let listData = await gallery.find({secret: false}, {sort: {createTime: -1},limit: 8,skip: page,fields: {openid: 0,desc: 0,secret: 0,comments:0}});
   listData.map((item, index) => {
     item.photos = item.photos.splice(0, 3);
     item.createTime = moment(new Date(item.createTime)).fromNow();
+    item.favorer.forEach((v,i)=>{
+      delete v.openid;
+    });
   });
   ctx.body = {
     code: 'succeed',
@@ -81,11 +86,14 @@ router.get('/photo/api/gallery/page/:num', async(ctx, next) => {
 
 //获取热门相册列表
 router.get('/photo/api/gallery/popular/page/:num', async(ctx, next) => {
-  let page = (Number(ctx.params.num) || 0) * 5;
-  let listData = await gallery.find({views: {$gt: 10},secret: false}, {sort: {views: -1},limit: 5,skip: page}, {fields: {openid: 0,desc: 0,secret: 0}});
+  let page = (Number(ctx.params.num) || 0) * 8;
+  let listData = await gallery.find({views: {$gt: 5},secret: false}, {sort: {views: -1},limit: 8,skip: page,fields: {openid: 0,desc: 0,secret: 0,comments:0}});
   listData.map((item, index) => {
     item.photos = item.photos.splice(0, 3);
     item.createTime = moment(new Date(item.createTime)).fromNow();
+    item.favorer.forEach((v,i)=>{
+      delete v.openid;
+    });
   });
   ctx.body = {
     code: 'succeed',
@@ -96,13 +104,16 @@ router.get('/photo/api/gallery/popular/page/:num', async(ctx, next) => {
 
 //获取个人相册
 router.get('/photo/api/gallery/:token/page/:num', async(ctx, next) => {
-  let page = (Number(ctx.params.num) || 0) * 5;
+  let page = (Number(ctx.params.num) || 0) * 8;
   const decoded = jwt.verify(ctx.params.token, privatekey);
   if (decoded.openid) {
-    let userGallery = await gallery.find({openid: decoded.openid}, {sort: {createTime: -1},limit: 5,skip: page}, {fields: {openid: 0,desc: 0}});
+    let userGallery = await gallery.find({openid: decoded.openid}, {sort: {createTime: -1},limit: 8,skip: page,fields: {openid: 0,desc: 0,comments:0}});
     userGallery.forEach((item, index) => {
       item.photos = item.photos.splice(0, 3);
       item.createTime = moment(new Date(item.createTime)).fromNow();
+      item.favorer.forEach((v,i)=>{
+        delete v.openid;
+      });
     });
     ctx.body = {
       code: 'succeed',
@@ -122,7 +133,9 @@ router.get('/photo/api/gallery/:token/page/:num', async(ctx, next) => {
 router.get('/photo/api/gallery/user/:token', async(ctx, next) => {
   const decoded = jwt.verify(ctx.params.token, privatekey);
   const shareCount = await gallery.count({openid: decoded.openid,secret: false});
+  console.log(decoded.openid);
   const favorites = (await users.findOne({openid: decoded.openid})).favorites;
+  console.log(favorites);
   const collectCount = favorites ? favorites.length : 0
   ctx.body = {
     code: 'succeed',
@@ -212,11 +225,14 @@ router.get('/photo/api/gallery/guest/:uid/:token', async(ctx, next) => {
   const uid = ctx.params.uid;
   const decoded = jwt.verify(ctx.params.token, privatekey);
   const userInfo = await users.findOne({openid: decoded.openid});
-  let listData = await gallery.find({uid: uid,secret: false}, {sort: {createTime: -1},fields: {openid: 0,comments:0,favorer:0}});
+  let listData = await gallery.find({uid: uid,secret: false}, {sort: {createTime: -1},fields: {openid: 0,comments:0}});
   let guestInfo = await users.findOne({_id:uid},{fields: {avatarUrl: 1,nickName:1}});
   listData.forEach((item, index) => {
     item.createTime = moment(new Date(item.createTime)).fromNow();
     item.photos = item.photos.splice(0, 3);
+    item.favorer.forEach((item,index)=>{
+      delete item.openid;
+    });
   });
 
   //判断用户是否关注
@@ -251,13 +267,13 @@ router.put('/photo/api/gallery/favorites', async(ctx, next) => {
 //获取用户收藏列表
 router.get('/photo/api/gallery/user/:token/favorites/page/:num', async(ctx, next) => {
   const decoded = jwt.verify(ctx.params.token, privatekey);
-  let page = (Number(ctx.params.num) || 0) * 5;
+  let page = (Number(ctx.params.num) || 0) * 8;
   let multiQuery = [];
   let userFavorites = [];
   const favorites = (await users.findOne({openid: decoded.openid})).favorites;
   if(favorites.length > 0){
     multiQuery = favorites.map((item, index) => ({_id: item}));
-    userFavorites = await gallery.find({$or: multiQuery}, {sort: {createTime: -1},limit: 5,skip: page}, {fields: {openid: 0}});
+    userFavorites = await gallery.find({$or: multiQuery}, {sort: {createTime: -1},limit: 8,skip: page}, {fields: {openid: 0}});
     userFavorites.forEach((item, index) => {
       item.createTime = moment(new Date(item.createTime)).fromNow();
     });
