@@ -1,4 +1,4 @@
-const host = 'https://www.fairy-domain.com/api';
+const host = 'https://www.xxxx.com/';
 App({
   onShow() {
     const self = this;
