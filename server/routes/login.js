@@ -8,10 +8,11 @@ const router = new Router();
 const gallery = db.get('gallery');
 const users = db.get('users');
 
+//APPID .SECRET 更换为自己的
 //获取 session_key 和 openid
 const getWXID = (code)=>{
   return new Promise((resolve, reject)=>{
-    request('https://api.weixin.qq.com/sns/jscode2session?appid=wxd9b91639dcec09e2&secret=03fcc02d96acc079469d91767aa87c0c&js_code='+code+'&grant_type=authorization_code',(error, response, body)=>{
+    request('https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code='+code+'&grant_type=authorization_code',(error, response, body)=>{
       error ? reject(error) : resolve(JSON.parse(body));
     });
   });
