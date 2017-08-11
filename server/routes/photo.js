@@ -15,7 +15,7 @@ moment.locale('zh-cn');
 
 router.get('/',(ctx, next) => {
   ctx.body = Render('index',{
-    title : 'api接口！';
+    title : 'api接口！'
   });
 });
 
