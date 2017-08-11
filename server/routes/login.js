@@ -11,7 +11,7 @@ const users = db.get('users');
 //获取 session_key 和 openid
 const getWXID = (code)=>{
   return new Promise((resolve, reject)=>{
-    request('https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code='+code+'&grant_type=authorization_code',(error, response, body)=>{
+    request('https://api.weixin.qq.com/sns/jscode2session?appid=wxd9b91639dcec09e2&secret=03fcc02d96acc079469d91767aa87c0c&js_code='+code+'&grant_type=authorization_code',(error, response, body)=>{
       error ? reject(error) : resolve(JSON.parse(body));
     });
   });
@@ -37,6 +37,7 @@ router.post('/photo/api/login', async(ctx, next) => {
     const wxCode = ctx.request.body.code;
     let userInfo = ctx.request.body.userinfo;
     const wxID = await getWXID(wxCode);
+    let userFullInfo = null;
     if(wxID.openid && wxID.session_key){
       userInfo = Object.assign({},userInfo,wxID,{createTime:new Date(),fans:[],favorites:[],follow:[],photoCount:0});
       const result = await users.find({openid : wxID.openid});
@@ -48,9 +49,11 @@ router.post('/photo/api/login', async(ctx, next) => {
         await gallery.update({openid:wxID.openid},{$set:{nickName:userInfo.nickName,avatarUrl:userInfo.avatarUrl}},{multi:true});
       }
       const token = jwt.sign({ nickName:userInfo.nickName,openid:userInfo.openid}, privatekey);
+      userFullInfo = await users.findOne({openid:userInfo.openid},{fields:{'session_key':0,'expires_in':0,'openid':0,'fans':0,'language':0,'follow':0}});
       ctx.body = {
         code: 'succeed',
         token,
+        userInfo:userFullInfo,
         message: '登录成功！'
       };
     }else{
