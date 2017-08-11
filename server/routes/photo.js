@@ -14,9 +14,7 @@ const users = db.get('users');
 moment.locale('zh-cn');
 
 router.get('/',(ctx, next) => {
-  ctx.body = Render('index',{
-    title : '远古仙域'
-  });
+  ctx.body = 'api接口'
 });
 
 //发布和修改
